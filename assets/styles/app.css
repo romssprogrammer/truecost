@@ -1,0 +1,383 @@
+@import "tailwindcss";
+@source not "../../public";
+
+:root {
+    --paper: #faf9f6;
+    --card: #ffffff;
+    --ink: #1a1a16;
+    --muted: #767267;
+    --blue-200: #84c5f4;
+    --gold: #b8863c;
+    --gold-bg: #fbf0dd;
+    --green: #2f7a5c;
+    --green-bg: #e7f3ec;
+    --red: #b94a3d;
+    --red-bg: #fbeae7;
+}
+
+body {
+    background-color: #faf9f6;
+}
+
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Inter", sans-serif;
+}
+h1,
+h2,
+h3 {
+    font-family: "Newsreader", serif;
+    font-weight: 600;
+    margin: 0;
+}
+.mono {
+    font-family: "IBM Plex Mono", monospace;
+}
+
+.wrap {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 44px 24px 90px;
+}
+
+.intro {
+    text-align: center;
+    margin-bottom: 40px;
+}
+.intro h2 {
+    font-size: 24px;
+    font-style: italic;
+    line-height: 1.3;
+    max-width: 640px;
+    margin: 0 auto 10px;
+}
+.intro p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+/* CATEGORY PICKER */
+@layer components {
+    .categories {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 36px;
+    }
+    .cat-btn {
+        padding: 9px 18px;
+        border-radius: 24px;
+        border: 1px solid var(--line);
+        background: var(--card);
+        font-size: 13.5px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        transition: 0.15s;
+    }
+    .cat-btn:hover {
+        border-color: var(--gold);
+    }
+    .cat-btn.active {
+        background: var(--ink);
+        color: var(--paper);
+        border-color: var(--ink);
+    }
+}
+
+.calc-btn {
+    background: var(--ink);
+    color: var(--paper);
+}
+
+/* FORM CARD */
+
+@layer components {
+    .card {
+        background: var(--card);
+        border: 1px solid var(--blue-200);
+        border-radius: 16px;
+        padding: 28px 30px;
+        margin-bottom: 26px;
+    }
+    .card-label {
+        font-size: 11.5px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--muted);
+        margin-bottom: 16px;
+    }
+
+    .tag.direct {
+        background: var(--green-bg);
+        color: var(--green);
+    }
+    .tag.hide {
+        background: var(--red-bg);
+        color: var(--red);
+    }
+    .row2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-bottom: 22px;
+    }
+    .field label {
+        display: block;
+        font-size: 12.5px;
+        color: var(--muted);
+        margin-bottom: 5px;
+    }
+    .field input {
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 9px;
+        border: 1px solid var(--line);
+        font-size: 15px;
+        font-family: "IBM Plex Mono", monospace;
+        background: var(--paper);
+        color: var(--ink);
+    }
+    .field input:focus {
+        outline: none;
+        border-color: var(--gold);
+    }
+
+    .cost-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 6px;
+    }
+    .cost-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    .cost-row .name {
+        flex: 1;
+        font-size: 13.5px;
+    }
+    .cost-row .tag {
+        font-size: 10px;
+        padding: 2px 8px;
+        border-radius: 20px;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+    }
+
+    .cost-row input {
+        width: 100px;
+        padding: 7px 10px;
+        border-radius: 8px;
+        border: 1px solid var(--line);
+        font-size: 13.5px;
+        font-family: "IBM Plex Mono", monospace;
+        text-align: right;
+        background: var(--paper);
+        color: var(--ink);
+    }
+    .cost-row input:focus {
+        outline: none;
+        border-color: var(--gold);
+    }
+    .cost-row .unit {
+        font-size: 11px;
+        color: var(--muted);
+        width: 30px;
+    }
+}
+
+/* REVEAL */
+@layer components {
+    .reveal {
+        background: linear-gradient(180deg, var(--card), var(--gold-bg));
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 34px 30px;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    .reveal .price-shown {
+        font-size: 14px;
+        color: var(--muted);
+    }
+    .reveal .price-shown b {
+        color: var(--ink);
+        text-decoration: line-through;
+        text-decoration-color: var(--red);
+        font-family: "IBM Plex Mono", monospace;
+    }
+    .reveal .arrow {
+        font-size: 20px;
+        color: var(--muted);
+        margin: 8px 0;
+    }
+    .reveal .real-label {
+        font-size: 12.5px;
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+        color: var(--muted);
+        margin-bottom: 6px;
+    }
+    .reveal .real-cost {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 46px;
+        font-weight: 600;
+        color: var(--gold);
+    }
+    .reveal .delta {
+        margin-top: 10px;
+        font-size: 13px;
+        color: var(--red);
+    }
+
+    .breakdown {
+        display: flex;
+        gap: 22px;
+        justify-content: center;
+        margin-top: 26px;
+        flex-wrap: wrap;
+    }
+    .breakdown-col {
+        text-align: left;
+        min-width: 180px;
+    }
+    .breakdown-col h4 {
+        font-family: "Inter";
+        font-size: 11.5px;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+        color: var(--muted);
+        margin-bottom: 8px;
+    }
+    .breakdown-item {
+        display: flex;
+        justify-content: space-between;
+        font-size: 12.5px;
+        padding: 5px 0;
+        border-bottom: 1px dashed var(--line);
+    }
+}
+
+/* COMPARISON */
+@layer components {
+    .section-title {
+        font-size: 12px;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin: 44px 0 16px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .section-title::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--line);
+    }
+
+    .compare-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+    }
+    .compare-card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 18px 16px;
+        position: relative;
+        transition: 0.15s;
+    }
+    .compare-card.best {
+        border-color: var(--green);
+        box-shadow: 0 4px 20px rgba(47, 122, 92, 0.12);
+    }
+    .best-badge {
+        position: absolute;
+        top: -10px;
+        left: 16px;
+        background: var(--green);
+        color: #fff;
+        font-size: 10px;
+        font-weight: 600;
+        padding: 3px 9px;
+        border-radius: 20px;
+        letter-spacing: 0.3px;
+        text-transform: uppercase;
+    }
+    .compare-icon {
+        font-size: 22px;
+        margin-bottom: 8px;
+    }
+    .compare-name {
+        font-size: 13.5px;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+    .compare-bar-track {
+        height: 6px;
+        background: var(--paper);
+        border-radius: 4px;
+        overflow: hidden;
+        margin-bottom: 10px;
+    }
+    .compare-bar-fill {
+        height: 100%;
+        border-radius: 4px;
+        background: var(--gold);
+    }
+    .compare-card.best .compare-bar-fill {
+        background: var(--green);
+    }
+    .compare-cost {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 17px;
+        font-weight: 600;
+    }
+    .compare-sub {
+        font-size: 11px;
+        color: var(--muted);
+        margin-top: 2px;
+    }
+
+    .savings-banner {
+        margin-top: 20px;
+        background: var(--green-bg);
+        border: 1px solid rgba(47, 122, 92, 0.3);
+        border-radius: 12px;
+        padding: 16px 20px;
+        text-align: center;
+        font-size: 14px;
+        color: var(--green);
+    }
+    .savings-banner b {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 17px;
+    }
+}
+
+@layer components {
+    @media (max-width: 720px) {
+        .row2 {
+            grid-template-columns: 1fr;
+        }
+        .compare-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+        .breakdown {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+}
